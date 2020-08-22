@@ -1,3 +1,4 @@
+//require('dotenv').config();
 const upload = require('./upload');
 
 const authMiddleware = require('./middleware/auth.middleware');
@@ -18,6 +19,19 @@ module.exports = (app, conn, mongoose) => {
     res.render('login');
   });
 
+  app.post('/login', (req, res) => {
+    if(req.body.password !== process.env.PASSWORD){
+      res.sendStatus(401);
+      return;
+    }
+    res.cookie('key', process.env.KEY_SECRET, {
+      signed: true
+    });
+    gfs.find().toArray((err, files) => {
+      return res.render('file', { filenames: files });
+    });
+  });
+
   app.post('/upload', (req, res) => {
     upload(req, res, (error) => {
       if (error) {
@@ -33,7 +47,7 @@ module.exports = (app, conn, mongoose) => {
     });
   });
 
-  app.post('/files', authMiddleware.authLogin, (req, res) => {
+  app.get('/files', authMiddleware.auth, (req, res) => {
     gfs.find().toArray((err, files) => {
       return res.render('file', { filenames: files });
     });

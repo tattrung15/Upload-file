@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload file</title>
+    <link rel="shortcut icon" href="./img/HIT-logo.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./font-awesome/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="upload">
+      <div class="upload-files">
+        <header>
+          <p>
+            <i class="fa fa-cloud-upload-alt"></i>
+            <span class="up">up</span>
+            <span class="load">load</span>
+          </p>
+        </header>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <div class="body" id="drop">
+            <i class="fa fa-file-upload"></i>
+            <p class="pointer-none">
+              <b>Drag and drop</b> file here <br />
+              or <a href="" id="triggerFile">browse</a> to begin the upload
+            </p>
+            <input type="file" id="fileInput" name="files" multiple />
+          </div>
+          <footer>
+            <div class="divider">
+              <span><AR>FILE</AR></span>
+            </div>
+            <div class="list-files">
+              <!--   template   -->
+            </div>
+            <button type="submit" class="importar">UPLOAD</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
